@@ -1,4 +1,4 @@
-# Amen's small group go to promise land together
+# Amen's small group go to the promise land together
 
 ## Build Setup
 

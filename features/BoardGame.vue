@@ -48,11 +48,12 @@
 
 <style lang="scss" scoped>
 .board {
-  @apply w-8/12 text-center p-4 grid grid-cols-16 gap-0;
+  @apply w-full text-center p-4 grid grid-cols-15 gap-0;
+  height: 100vh;
   background: #FDF3CC;
 
   .cell {
-    @apply p-3 border-0 rounded-b-sm cursor-pointer ;
+    @apply p-3 border-0 rounded-b-sm cursor-pointer flex items-center justify-center;
     color: #fff;
   }
   .reverse {
