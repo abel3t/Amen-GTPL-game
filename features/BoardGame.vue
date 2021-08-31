@@ -80,7 +80,7 @@
   background: #FDF3CC;
 
   .cell {
-    @apply p-3 border-0 rounded-b-sm cursor-pointer flex items-center justify-center;
+    @apply p-3 border-0 rounded-b-sm cursor-pointer flex items-center justify-center select-none;
     color: #fff;
   }
 

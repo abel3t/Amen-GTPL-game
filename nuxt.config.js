@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'amen-go-to-promise-land',
+    title: 'Amen! Tiến vào đất hứa',
     htmlAttrs: {
       lang: 'en'
     },
