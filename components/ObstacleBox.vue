@@ -7,7 +7,7 @@
           {{obstacle.title}}
         </div>
 
-        <div class="content__body_request">
+        <div class="content__body_request animate__animated" v-bind:class="{[animate]: animate}">
           {{obstacle.request}}
         </div>
       </div>
@@ -58,6 +58,11 @@ export default {
     },
     obstacle: function () {
       return this.$store.getters.obstacle
+    },
+    animate: function() {
+      const animates = this.$store.getters.animates;
+      const rand = Math.round(Math.random() * Object.keys(animates).length);
+      return animates[rand];
     }
   },
   methods: {

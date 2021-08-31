@@ -92,7 +92,21 @@ const state = () => ({
     38: {},
     39: {},
     40: {}
-  } as any
+  } as any,
+  animates: {
+    1: 'animate__flipInX',
+    2: 'animate__bounce',
+    3: 'animate__pulse',
+    4: 'animate__rubberBand',
+    5: 'animate__shakeX',
+    6: 'animate__shakeY',
+    7: 'animate__swing',
+    8: 'animate__tada',
+    9: 'animate__wobble',
+    10: 'animate__heartBeat',
+    11: 'animate__lightSpeedInRight',
+    12: 'animate__jackInTheBox'
+  }
 });
 
 const mutations: MutationTree<RootState> = {
@@ -131,6 +145,9 @@ const getters: GetterTree<RootState, RootState> = {
   },
   obstacle(state) {
     return state.obstacle;
+  },
+  animates(state) {
+    return state.animates;
   }
 };
 
