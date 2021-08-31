@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       rotation: {
-        x: -Math.PI * Math.random() * 3,
-        y: -Math.PI * Math.random() * 5,
-        z: -Math.PI * Math.random() * 7
+        x: -Math.PI / 2,
+        y: -Math.PI / 2,
+        z: -Math.PI / 2
       },
       isThrowDice: false,
     }
@@ -34,9 +34,9 @@ export default {
     },
     rotate () {
       if (this.isThrowDice) {
-        this.rotation.x += Math.random();
-        this.rotation.y += Math.random();
-        this.rotation.z += Math.random();
+        this.rotation.x += Math.round(Math.random() * 4);
+        this.rotation.y += Math.round(Math.random() * 4);
+        this.rotation.z += Math.round(Math.random() * 4);
         requestAnimationFrame( this.rotate );
       }
     }
