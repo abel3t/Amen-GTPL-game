@@ -1,7 +1,7 @@
 <template>
   <div>
     <ObstacleBox v-if="isShowObstacleBox"/>
-    <div class="board pt-10">
+    <div class="board">
       <div class="cell" id="cell-start">Start</div>
       <div class="cell" id="cell-1" @click="showObstacleBox(1)" :style="{ background: cellColors['1'] }">1</div>
       <div class="cell" id="cell-2" @click="showObstacleBox(2)" :style="{ background: cellColors['2'] }">2</div>
@@ -46,11 +46,18 @@
       <div class="cell" id="cell-16" @click="showObstacleBox(16)" :style="{ background: cellColors['16'] }">16</div>
       <div class="cell" id="cell-15" @click="showObstacleBox(15)" :style="{ background: cellColors['15'] }">15</div>
       <div class="cell" id="cell-14" @click="showObstacleBox(14)" :style="{ background: cellColors['14'] }">14</div>
+
+
+      <div class="cell" id="cell-40" @click="showObstacleBox(40)">
+        <div>
+          <div>
+            Về<br />đích<br />40
+          </div>
+        </div>
+      </div>
+
       <div class="cell" id="cell-24" @click="showObstacleBox(24)" :style="{ background: cellColors['24'] }">
         24
-      </div>
-      <div class="cell" id="cell-40" @click="showObstacleBox(40)"
-           :style="{ background: cellColors['40'] }">40
       </div>
       <div class="cell" id="cell-25" @click="showObstacleBox(25)" :style="{ background: cellColors['25'] }">
         25
@@ -75,7 +82,7 @@
 
 <style lang="scss" scoped>
 .board {
-  @apply w-full text-center p-5 pt-11 grid grid-cols-15 gap-0;
+  @apply w-full text-center p-5 pt-11 grid grid-cols-16 gap-0;
   height: 100vh;
   background: #FDF3CC;
 
@@ -99,26 +106,26 @@
 
   #pawn-1 {
     left: 30px;
-    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background: url("../assets/images/pwan-green.png") no-repeat center;
     background-size: 100px 100px;
     overflow: visible;
   }
 
   #pawn-2 {
     left: 90px;
-    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background: url("assets/images/pwan-red.png") no-repeat center;
     background-size: 100px 100px;
   }
 
   #pawn-3 {
     left: 150px;
-    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background: url("assets/images/pwan-purple.png") no-repeat center;
     background-size: 100px 100px;
   }
 
   #pawn-4 {
     left: 210px;
-    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background: url("assets/images/pawn-yello.png") no-repeat center;
     background-size: 100px 100px;
   }
 
@@ -257,7 +264,15 @@
   }
 
   #cell-40 {
-    @apply col-start-15;
+    @apply col-start-14 col-span-3 row-span-2 pb-0 flex items-end;
+    > div {
+      @apply w-5/6 h-5/6 p-0;
+      background: url("assets/images/to-finish.png") no-repeat center;
+      background-size: 116%;
+      > div {
+        @apply pt-10;
+      }
+    }
   }
 
   // endregion
