@@ -88,6 +88,8 @@
 
   .cell {
     @apply p-3 border-0 rounded-b-sm cursor-pointer flex items-center justify-center select-none;
+    font-family: 'Bernard MT Condensed', 'arial', serif;
+    font-size: 20px;
     color: #fff;
   }
 
@@ -271,6 +273,8 @@
       background-size: 116%;
       > div {
         @apply pt-10;
+        font-family: 'Alfa Slab One', serif;
+        font-size: 18px;
       }
     }
   }

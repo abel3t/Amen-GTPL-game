@@ -24,14 +24,18 @@ t-modal {
   @apply border-2 rounded-md;
   &__header {
     @apply text-white text-3xl p-4;
+    font-family: 'Alfa Slab One', serif;
   }
 
   &__body {
     &_title {
-      @apply text-4xl p-3;
+      @apply text-3xl p-4;
+      font-family: 'Alfa Slab One', 'arial', sans-serif;
     }
     &_request {
-      @apply text-2xl p-5;
+      @apply text-2xl px-12 py-5;
+      font-family: 'arial', sans-serif;
+      font-size: 20px;
     }
   }
 }
