@@ -6,7 +6,6 @@ export const TOGGLE_OBSTACLE_BOX = 'toggleObstacleBox';
 export const SET_OBSTACLE = 'setObstacle';
 
 const state = () => ({
-  id: 0,
   showObstacleBox: false,
   obstacle: {},
   cellColors: {
@@ -53,9 +52,9 @@ const state = () => ({
   },
   obstacles: {
     1: {
-      header: "Xuất Phát",
-      title: "AI CẬP – RẼ BIỂN ĐỎ",
-      request: "Quân Ai Cập đuổi tới rồi: mọi người chỉ kịp lấy hành lý quan trọng nhất mà chạy thôi! Mỗi người chơi hãy chọn 1 hành trang cho mình và giải thích chức năng hợp lý!"
+      header: 'Xuất Phát',
+      title: 'AI CẬP – RẼ BIỂN ĐỎ',
+      request: 'Quân Ai Cập đuổi tới rồi: mọi người chỉ kịp lấy hành lý quan trọng nhất mà chạy thôi! Mỗi người chơi hãy chọn 1 hành trang cho mình và giải thích chức năng hợp lý!'
     },
     2: {},
     3: {},
@@ -95,7 +94,7 @@ const state = () => ({
     37: {},
     38: {},
     39: {},
-    40: {},
+    40: {}
   } as any
 });
 
@@ -104,9 +103,9 @@ const mutations: MutationTree<RootState> = {
     state.showObstacleBox = showObstacleBox;
   },
   [`${SET_OBSTACLE}`](state, id: number) {
-    state.obstacle = state.obstacles[`${id}`];
+    state.obstacle = { id, ...state.obstacles[`${id}`] };
   }
-}
+};
 
 const actions: ActionTree<RootState, RootState> = {
   [`${TOGGLE_OBSTACLE_BOX}`]({ commit }, payload) {
@@ -115,7 +114,7 @@ const actions: ActionTree<RootState, RootState> = {
   [`${SET_OBSTACLE}`]({ commit }, payload) {
     commit(SET_OBSTACLE, payload);
   }
-}
+};
 
 const getters: GetterTree<RootState, RootState> = {
   showObstacleBox(state) {
@@ -131,7 +130,6 @@ const getters: GetterTree<RootState, RootState> = {
     return state.obstacle;
   }
 };
-
 
 export default {
   state, getters, mutations, actions

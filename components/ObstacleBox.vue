@@ -1,7 +1,7 @@
 <template>
   <t-modal v-model="showObstacleBox" :escToClose="true" :hideCloseButton="false" @before-close="close">
-    <div class="content">
-      <div class="content__header">{{obstacle.header}}</div>
+    <div class="content" :style="{borderColor: cellColors[obstacle.id]}">
+      <div class="content__header" :style="{backgroundColor: cellColors[obstacle.id]}">{{obstacle.header}}</div>
       <div class="content__body">
         <div class="content__body_title">
           {{obstacle.title}}
@@ -21,9 +21,9 @@ t-modal {
 }
 
 .content {
-  @apply border-2 border-blue-400 rounded-md;
+  @apply border-2 rounded-md;
   &__header {
-    @apply bg-blue-400 text-white text-3xl p-4;
+    @apply text-white text-3xl p-4;
   }
 
   &__body {
@@ -43,6 +43,9 @@ import { TOGGLE_OBSTACLE_BOX } from '~/store';
 export default {
   components: {},
   computed: {
+    cellColors: function () {
+      return this.$store.getters.cellColors;
+    },
     showObstacleBox: {
       get() {
         return this.$store.getters.showObstacleBox;
