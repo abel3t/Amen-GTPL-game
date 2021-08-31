@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ObstacleBox/>
+    <ObstacleBox v-if="isShowObstacleBox"/>
     <div class="board pt-10">
       <div class="cell" id="cell-start">Start</div>
       <div class="cell" id="cell-1" @click="showObstacleBox(1)" :style="{ background: cellColors['1'] }">1</div>
@@ -12,16 +12,16 @@
       <div class="cell" id="cell-7" @click="showObstacleBox(7)" :style="{ background: cellColors['7'] }">7</div>
       <div class="cell" id="cell-8" @click="showObstacleBox(8)" :style="{ background: cellColors['8'] }">8</div>
       <div class="cell" id="cell-9" @click="showObstacleBox(9)" :style="{ background: cellColors['9'] }">9</div>
-      <div class="cell col-start-10" id="cell-10" @click="showObstacleBox(10)"
+      <div class="cell" id="cell-10" @click="showObstacleBox(10)"
            :style="{ background: cellColors['10'] }">10
       </div>
-      <div class="cell col-start-10" id="cell-11" @click="showObstacleBox(11)"
+      <div class="cell" id="cell-11" @click="showObstacleBox(11)"
            :style="{ background: cellColors['11'] }">11
       </div>
-      <div class="cell col-start-10" id="cell-12" @click="showObstacleBox(12)"
+      <div class="cell" id="cell-12" @click="showObstacleBox(12)"
            :style="{ background: cellColors['12'] }">12
       </div>
-      <div class="cell col-start-11 col-span-3 row-span-3 relative">
+      <div class="cell" id="pawns">
         <div class="pawn" id="pawn-1" v-dragged="onDragged">
         </div>
         <div class="pawn" id="pawn-2" v-dragged="onDragged">
@@ -31,10 +31,10 @@
         <div class="pawn" id="pawn-4" v-dragged="onDragged">
         </div>
       </div>
-      <div class="cell col-start-10" id="cell-13" @click="showObstacleBox(13)"
+      <div class="cell" id="cell-13" @click="showObstacleBox(13)"
            :style="{ background: cellColors['13'] }">13
       </div>
-      <div class="cell col-start-1" id="cell-23" @click="showObstacleBox(23)" :style="{ background: cellColors['23'] }">
+      <div class="cell" id="cell-23" @click="showObstacleBox(23)" :style="{ background: cellColors['23'] }">
         23
       </div>
       <div class="cell" id="cell-22" @click="showObstacleBox(22)" :style="{ background: cellColors['22'] }">22</div>
@@ -46,13 +46,13 @@
       <div class="cell" id="cell-16" @click="showObstacleBox(16)" :style="{ background: cellColors['16'] }">16</div>
       <div class="cell" id="cell-15" @click="showObstacleBox(15)" :style="{ background: cellColors['15'] }">15</div>
       <div class="cell" id="cell-14" @click="showObstacleBox(14)" :style="{ background: cellColors['14'] }">14</div>
-      <div class="cell col-start-1" id="cell-24" @click="showObstacleBox(24)" :style="{ background: cellColors['24'] }">
+      <div class="cell" id="cell-24" @click="showObstacleBox(24)" :style="{ background: cellColors['24'] }">
         24
       </div>
-      <div class="cell col-start-15" id="cell-40" @click="showObstacleBox(40)"
+      <div class="cell" id="cell-40" @click="showObstacleBox(40)"
            :style="{ background: cellColors['40'] }">40
       </div>
-      <div class="cell col-start-1" id="cell-25" @click="showObstacleBox(25)" :style="{ background: cellColors['25'] }">
+      <div class="cell" id="cell-25" @click="showObstacleBox(25)" :style="{ background: cellColors['25'] }">
         25
       </div>
       <div class="cell" id="cell-26" @click="showObstacleBox(26)" :style="{ background: cellColors['26'] }">26</div>
@@ -84,14 +84,16 @@
     color: #fff;
   }
 
+  #pawns {
+    @apply col-start-11 col-span-3 row-span-3 relative;
+  }
+
   .pawn {
     position: absolute;
     z-index: 9;
     cursor: pointer;
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 50px;
+    min-height: 80px;
     background: transparent;
   }
 
@@ -99,6 +101,7 @@
     left: 30px;
     background: url("assets/images/pwan-green.jpg") no-repeat center;
     background-size: 100px 100px;
+    overflow: visible;
   }
 
   #pawn-2 {
@@ -155,15 +158,19 @@
   }
 
   #cell-10 {
+    @apply col-start-10;
   }
 
   #cell-11 {
+    @apply col-start-10;
   }
 
   #cell-12 {
+    @apply col-start-10;
   }
 
   #cell-13 {
+    @apply col-start-10;
   }
 
   #cell-14 {
@@ -195,14 +202,15 @@
   }
 
   #cell-23 {
-    @apply rounded-tl-xl;
+    @apply rounded-tl-xl col-start-1;
   }
 
   #cell-24 {
+    @apply col-start-1;
   }
 
   #cell-25 {
-    @apply rounded-bl-xl;
+    @apply rounded-bl-xl col-start-1;
   }
 
   #cell-26 {
@@ -249,18 +257,18 @@
   }
 
   #cell-40 {
+    @apply col-start-15;
   }
 
   // endregion
 }
 </style>
 
-<script lang="ts">
-import Vue from 'vue';
+<script>
 import ObstacleBox from '../components/ObstacleBox.vue';
 import { SET_OBSTACLE, TOGGLE_OBSTACLE_BOX } from '~/store';
 
-export default Vue.extend({
+export default {
   components: { ObstacleBox },
   data() {
     return {
@@ -270,19 +278,25 @@ export default Vue.extend({
   computed: {
     cellColors: function () {
       return this.$store.getters.cellColors;
+    },
+    isShowObstacleBox: {
+      get() {
+        return this.$store.getters.showObstacleBox;
+      },
+      set() {}
     }
   },
   methods: {
-    showObstacleBox(id: number) {
+    showObstacleBox(id) {
       this.$store.dispatch(SET_OBSTACLE, id);
       this.$store.dispatch(TOGGLE_OBSTACLE_BOX, true);
     },
-    onDragged({ el, deltaX, deltaY }: any) {
+    onDragged({ el, deltaX, deltaY }) {
       let l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
       let t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
       el.style.left = l + deltaX + 'px';
       el.style.top = t + deltaY + 'px';
     }
   }
-});
+};
 </script>
