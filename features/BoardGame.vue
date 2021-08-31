@@ -12,6 +12,9 @@
       <div class="cell" id="cell-7" @click="showObstacleBox(7)" :style="{ background: cellColors['7'] }">7</div>
       <div class="cell" id="cell-8" @click="showObstacleBox(8)" :style="{ background: cellColors['8'] }">8</div>
       <div class="cell" id="cell-9" @click="showObstacleBox(9)" :style="{ background: cellColors['9'] }">9</div>
+      <div class="settings">
+        <Settings />
+      </div>
       <div class="cell" id="cell-10" @click="showObstacleBox(10)"
            :style="{ background: cellColors['10'] }">10
       </div>
@@ -51,7 +54,7 @@
       <div class="cell" id="cell-40" @click="showObstacleBox(40)">
         <div>
           <div>
-            Về<br />đích<br />40
+            Về<br/>đích<br/>40
           </div>
         </div>
       </div>
@@ -91,6 +94,10 @@
     font-family: 'Bernard MT Condensed', 'arial', serif;
     font-size: 20px;
     color: #fff;
+  }
+
+  .settings {
+    @apply col-start-16;
   }
 
   #pawns {
@@ -271,6 +278,7 @@
       @apply w-5/6 h-5/6 p-0;
       background: url("assets/images/to-finish.png") no-repeat center;
       background-size: 116%;
+
       > div {
         @apply pt-10;
         font-family: 'Alfa Slab One', serif;
@@ -285,14 +293,22 @@
 
 <script>
 import ObstacleBox from '../components/ObstacleBox.vue';
-import { SET_OBSTACLE, TOGGLE_OBSTACLE_BOX } from '~/store';
+import Settings from '../components/Settings.vue';
+
+import { SET_OBSTACLE, SET_OBSTACLES, TOGGLE_OBSTACLE_BOX } from '~/store';
 
 export default {
-  components: { ObstacleBox },
+  components: { ObstacleBox, Settings },
   data() {
     return {
       isDragging: true
     };
+  },
+  mounted() {
+    const obstacles = window.localStorage.getItem('obstacles');
+    if (obstacles) {
+      this.$store.dispatch(SET_OBSTACLES, JSON.parse(obstacles));
+    }
   },
   computed: {
     cellColors: function () {

@@ -4,6 +4,7 @@ export type RootState = ReturnType<typeof state>
 
 export const TOGGLE_OBSTACLE_BOX = 'toggleObstacleBox';
 export const SET_OBSTACLE = 'setObstacle';
+export const SET_OBSTACLES = 'setObstacles';
 
 const state = () => ({
   showObstacleBox: false,
@@ -51,11 +52,7 @@ const state = () => ({
     40: '#F7C100'
   },
   obstacles: {
-    1: {
-      header: 'Xuất Phát',
-      title: 'AI CẬP – RẼ BIỂN ĐỎ',
-      request: 'Quân Ai Cập đuổi tới rồi: mọi người chỉ kịp lấy hành lý quan trọng nhất mà chạy thôi! Mỗi người chơi hãy chọn 1 hành trang cho mình và giải thích chức năng hợp lý!'
-    },
+    1: {},
     2: {},
     3: {},
     4: {},
@@ -104,6 +101,9 @@ const mutations: MutationTree<RootState> = {
   },
   [`${SET_OBSTACLE}`](state, id: number) {
     state.obstacle = { id, ...state.obstacles[`${id}`] };
+  },
+  [`${SET_OBSTACLES}`](state, obstacles: any) {
+    state.obstacles = obstacles;
   }
 };
 
@@ -113,6 +113,9 @@ const actions: ActionTree<RootState, RootState> = {
   },
   [`${SET_OBSTACLE}`]({ commit }, payload) {
     commit(SET_OBSTACLE, payload);
+  },
+  [`${SET_OBSTACLES}`]({ commit }, payload) {
+    commit(SET_OBSTACLES, payload);
   }
 };
 
