@@ -1,54 +1,81 @@
 <template>
-  <div class="board">
-    <div class="cell" id="cell-start">Start</div>
-    <div class="cell" id="cell-1">1</div>
-    <div class="cell" id="cell-2">2</div>
-    <div class="cell" id="cell-3">3</div>
-    <div class="cell" id="cell-4">4</div>
-    <div class="cell" id="cell-5">5</div>
-    <div class="cell" id="cell-6">6</div>
-    <div class="cell" id="cell-7">7</div>
-    <div class="cell" id="cell-8">8</div>
-    <div class="cell" id="cell-9">9</div>
-    <div class="cell col-start-10" id="cell-10">10</div>
-    <div class="cell col-start-10" id="cell-11">11</div>
-    <div class="cell col-start-10" id="cell-12">12</div>
-    <div class="cell col-start-10" id="cell-13">13</div>
-    <div class="reverse col-span-10 grid grid-cols-10 gap-0">
-      <div class="cell" id="cell-14">14</div>
-      <div class="cell" id="cell-15">15</div>
-      <div class="cell" id="cell-16">16</div>
-      <div class="cell" id="cell-17">17</div>
-      <div class="cell" id="cell-18">18</div>
-      <div class="cell" id="cell-19">19</div>
-      <div class="cell" id="cell-20">20</div>
-      <div class="cell" id="cell-21">21</div>
-      <div class="cell" id="cell-22">22</div>
-      <div class="cell" id="cell-23">23</div>
+  <div>
+    <ObstacleBox/>
+    <div class="board pt-10">
+      <div class="cell" id="cell-start">Start</div>
+      <div class="cell" id="cell-1" @click="showObstacleBox(1)" :style="{ background: cellColors['1'] }">1</div>
+      <div class="cell" id="cell-2" @click="showObstacleBox(2)" :style="{ background: cellColors['2'] }">2</div>
+      <div class="cell" id="cell-3" @click="showObstacleBox(3)" :style="{ background: cellColors['3'] }">3</div>
+      <div class="cell" id="cell-4" @click="showObstacleBox(4)" :style="{ background: cellColors['4'] }">4</div>
+      <div class="cell" id="cell-5" @click="showObstacleBox(5)" :style="{ background: cellColors['5'] }">5</div>
+      <div class="cell" id="cell-6" @click="showObstacleBox(6)" :style="{ background: cellColors['6'] }">6</div>
+      <div class="cell" id="cell-7" @click="showObstacleBox(7)" :style="{ background: cellColors['7'] }">7</div>
+      <div class="cell" id="cell-8" @click="showObstacleBox(8)" :style="{ background: cellColors['8'] }">8</div>
+      <div class="cell" id="cell-9" @click="showObstacleBox(9)" :style="{ background: cellColors['9'] }">9</div>
+      <div class="cell col-start-10" id="cell-10" @click="showObstacleBox(10)"
+           :style="{ background: cellColors['10'] }">10
+      </div>
+      <div class="cell col-start-10" id="cell-11" @click="showObstacleBox(11)"
+           :style="{ background: cellColors['11'] }">11
+      </div>
+      <div class="cell col-start-10" id="cell-12" @click="showObstacleBox(12)"
+           :style="{ background: cellColors['12'] }">12
+      </div>
+      <div class="cell col-start-11 col-span-3 row-span-3 relative">
+        <div class="pawn" id="pawn-1" v-dragged="onDragged">
+        </div>
+        <div class="pawn" id="pawn-2" v-dragged="onDragged">
+        </div>
+        <div class="pawn" id="pawn-3" v-dragged="onDragged">
+        </div>
+        <div class="pawn" id="pawn-4" v-dragged="onDragged">
+        </div>
+      </div>
+      <div class="cell col-start-10" id="cell-13" @click="showObstacleBox(13)"
+           :style="{ background: cellColors['13'] }">13
+      </div>
+      <div class="cell col-start-1" id="cell-23" @click="showObstacleBox(23)" :style="{ background: cellColors['23'] }">
+        23
+      </div>
+      <div class="cell" id="cell-22" @click="showObstacleBox(22)" :style="{ background: cellColors['22'] }">22</div>
+      <div class="cell" id="cell-21" @click="showObstacleBox(21)" :style="{ background: cellColors['21'] }">21</div>
+      <div class="cell" id="cell-20" @click="showObstacleBox(20)" :style="{ background: cellColors['20'] }">20</div>
+      <div class="cell" id="cell-19" @click="showObstacleBox(19)" :style="{ background: cellColors['19'] }">19</div>
+      <div class="cell" id="cell-18" @click="showObstacleBox(18)" :style="{ background: cellColors['18'] }">18</div>
+      <div class="cell" id="cell-17" @click="showObstacleBox(17)" :style="{ background: cellColors['17'] }">17</div>
+      <div class="cell" id="cell-16" @click="showObstacleBox(16)" :style="{ background: cellColors['16'] }">16</div>
+      <div class="cell" id="cell-15" @click="showObstacleBox(15)" :style="{ background: cellColors['15'] }">15</div>
+      <div class="cell" id="cell-14" @click="showObstacleBox(14)" :style="{ background: cellColors['14'] }">14</div>
+      <div class="cell col-start-1" id="cell-24" @click="showObstacleBox(24)" :style="{ background: cellColors['24'] }">
+        24
+      </div>
+      <div class="cell col-start-15" id="cell-40" @click="showObstacleBox(40)"
+           :style="{ background: cellColors['40'] }">40
+      </div>
+      <div class="cell col-start-1" id="cell-25" @click="showObstacleBox(25)" :style="{ background: cellColors['25'] }">
+        25
+      </div>
+      <div class="cell" id="cell-26" @click="showObstacleBox(26)" :style="{ background: cellColors['26'] }">26</div>
+      <div class="cell" id="cell-27" @click="showObstacleBox(27)" :style="{ background: cellColors['27'] }">27</div>
+      <div class="cell" id="cell-28" @click="showObstacleBox(28)" :style="{ background: cellColors['28'] }">28</div>
+      <div class="cell" id="cell-29" @click="showObstacleBox(29)" :style="{ background: cellColors['29'] }">29</div>
+      <div class="cell" id="cell-30" @click="showObstacleBox(30)" :style="{ background: cellColors['30'] }">30</div>
+      <div class="cell" id="cell-31" @click="showObstacleBox(31)" :style="{ background: cellColors['31'] }">31</div>
+      <div class="cell" id="cell-32" @click="showObstacleBox(32)" :style="{ background: cellColors['32'] }">32</div>
+      <div class="cell" id="cell-33" @click="showObstacleBox(33)" :style="{ background: cellColors['33'] }">33</div>
+      <div class="cell" id="cell-34" @click="showObstacleBox(34)" :style="{ background: cellColors['34'] }">34</div>
+      <div class="cell" id="cell-35" @click="showObstacleBox(35)" :style="{ background: cellColors['35'] }">35</div>
+      <div class="cell" id="cell-36" @click="showObstacleBox(36)" :style="{ background: cellColors['36'] }">36</div>
+      <div class="cell" id="cell-37" @click="showObstacleBox(37)" :style="{ background: cellColors['37'] }">37</div>
+      <div class="cell" id="cell-38" @click="showObstacleBox(38)" :style="{ background: cellColors['38'] }">38</div>
+      <div class="cell" id="cell-39" @click="showObstacleBox(39)" :style="{ background: cellColors['39'] }">39</div>
     </div>
-    <div class="cell col-start-1" id="cell-24">24</div>
-    <div class="cell col-start-15" id="cell-40">40</div>
-    <div class="cell col-start-1" id="cell-25">25</div>
-    <div class="cell" id="cell-26">26</div>
-    <div class="cell" id="cell-27">27</div>
-    <div class="cell" id="cell-28">28</div>
-    <div class="cell" id="cell-29">29</div>
-    <div class="cell" id="cell-30">30</div>
-    <div class="cell" id="cell-31">31</div>
-    <div class="cell" id="cell-32">32</div>
-    <div class="cell" id="cell-33">33</div>
-    <div class="cell" id="cell-34">34</div>
-    <div class="cell" id="cell-35">35</div>
-    <div class="cell" id="cell-36">36</div>
-    <div class="cell" id="cell-37">37</div>
-    <div class="cell" id="cell-38">38</div>
-    <div class="cell" id="cell-39">39</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .board {
-  @apply w-full text-center p-4 grid grid-cols-15 gap-0;
+  @apply w-full text-center p-5 pt-11 grid grid-cols-15 gap-0;
   height: 100vh;
   background: #FDF3CC;
 
@@ -56,186 +83,206 @@
     @apply p-3 border-0 rounded-b-sm cursor-pointer flex items-center justify-center;
     color: #fff;
   }
-  .reverse {
-    direction: rtl;
+
+  .pawn {
+    position: absolute;
+    z-index: 9;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    background: transparent;
   }
+
+  #pawn-1 {
+    left: 30px;
+    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background-size: 100px 100px;
+  }
+
+  #pawn-2 {
+    left: 90px;
+    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background-size: 100px 100px;
+  }
+
+  #pawn-3 {
+    left: 150px;
+    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background-size: 100px 100px;
+  }
+
+  #pawn-4 {
+    left: 210px;
+    background: url("assets/images/pwan-green.jpg") no-repeat center;
+    background-size: 100px 100px;
+  }
+
 
   // region Cell colors
   #cell-start {
     @apply rounded-l-xl;
     background: #BB779A;
   }
+
   #cell-1 {
-    background: #8E7CC3;
   }
+
   #cell-2 {
-    background: #6FA9DC;
   }
 
   #cell-3 {
-    background: #93C47D;
   }
 
   #cell-4 {
-    background: #F9D966;
   }
 
   #cell-5 {
-    background: #E06667;
   }
 
   #cell-6 {
-    background: #C37BA0;
   }
 
   #cell-7 {
-    background: #6FA9DC;
   }
 
   #cell-8 {
-    background: #93C47D;
   }
 
   #cell-9 {
     @apply rounded-tr-xl;
-    background: #C37BA0;
   }
 
   #cell-10 {
-    background: #8E7CC3;
   }
 
   #cell-11 {
-    background: #93C47D;
   }
 
   #cell-12 {
-    background: #6FA9DC;
   }
 
   #cell-13 {
-    background: #E06667;
   }
 
   #cell-14 {
     @apply rounded-br-xl;
-    background: #C37BA0;
   }
 
   #cell-15 {
-    background: #8E7CC3;
   }
 
   #cell-16 {
-    background: #6FA9DC;
   }
 
   #cell-17 {
-    background: #93C47D;
   }
 
   #cell-18 {
-    background: #F9D966;
   }
 
   #cell-19 {
-    background: #E06667;
   }
 
   #cell-20 {
-    background: #C37BA0;
   }
 
   #cell-21 {
-    background: #8E7CC3;
   }
 
   #cell-22 {
-    background: #F7C100;
   }
 
   #cell-23 {
     @apply rounded-tl-xl;
-    background: #C37BA0;
   }
 
   #cell-24 {
-    background: #F9D966;
   }
 
   #cell-25 {
     @apply rounded-bl-xl;
-    background: #93C47D;
   }
 
   #cell-26 {
-    background: #E06667;
   }
 
   #cell-27 {
-    background: #F9D966;
   }
 
   #cell-28 {
-    background: #8E7CC3;
   }
 
   #cell-29 {
-    background: #93C47D;
   }
 
   #cell-30 {
-    background: #C37BA0;
   }
 
   #cell-31 {
-    background: #6FA9DC;
   }
 
   #cell-32 {
-    background: #8E7CC3;
   }
 
   #cell-33 {
-    background: #E06667;
   }
 
   #cell-34 {
-    background: #93C47D;
   }
 
   #cell-35 {
-    background: #F9D966;
   }
 
   #cell-36 {
-    background: #E06667;
   }
 
   #cell-37 {
-    background: #C37BA0;
   }
 
   #cell-38 {
-    background: #6FA9DC;
   }
 
   #cell-39 {
-    background: #93C47D;
     @apply rounded-br-xl;
   }
 
   #cell-40 {
-    background: #F7C100;
   }
+
   // endregion
 }
 </style>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
+import ObstacleBox from '../components/ObstacleBox.vue';
+import { SET_OBSTACLE, TOGGLE_OBSTACLE_BOX } from '~/store';
 
 export default Vue.extend({
-  components: {  }
+  components: { ObstacleBox },
+  data() {
+    return {
+      isDragging: true
+    };
+  },
+  computed: {
+    cellColors: function () {
+      return this.$store.getters.cellColors;
+    }
+  },
+  methods: {
+    showObstacleBox(id: number) {
+      this.$store.dispatch(SET_OBSTACLE, id);
+      this.$store.dispatch(TOGGLE_OBSTACLE_BOX, true);
+    },
+    onDragged({ el, deltaX, deltaY }: any) {
+      let l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
+      let t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
+      el.style.left = l + deltaX + 'px';
+      el.style.top = t + deltaY + 'px';
+    }
+  }
 });
 </script>

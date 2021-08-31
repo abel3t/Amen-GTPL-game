@@ -24,6 +24,9 @@ export default {
   plugins: [
     {
       src: '~/plugins/vue-tailwind.ts', mode: 'client'
+    },
+    {
+      src: '~/plugins/vue-dragged.js'
     }
   ],
 
