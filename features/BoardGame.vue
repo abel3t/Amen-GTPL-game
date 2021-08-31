@@ -18,6 +18,12 @@
       <div class="cell" id="cell-10" @click="showObstacleBox(10)"
            :style="{ background: cellColors['10'] }">10
       </div>
+
+
+      <div id="dice">
+        <Dice />
+      </div>
+
       <div class="cell" id="cell-11" @click="showObstacleBox(11)"
            :style="{ background: cellColors['11'] }">11
       </div>
@@ -100,6 +106,11 @@
     @apply col-start-16;
   }
 
+  #dice {
+    @apply col-start-3 col-span-3 row-span-2;
+    background: #FDF3CC;
+  }
+
   #pawns {
     @apply col-start-11 col-span-3 row-span-3 relative;
   }
@@ -115,7 +126,7 @@
 
   #pawn-1 {
     left: 30px;
-    background: url("../assets/images/pwan-green.png") no-repeat center;
+    background: url("assets/images/pwan-green.png") no-repeat center;
     background-size: 100px 100px;
     overflow: visible;
   }
@@ -294,11 +305,12 @@
 <script>
 import ObstacleBox from '../components/ObstacleBox.vue';
 import Settings from '../components/Settings.vue';
+import Dice from '~/components/Dice.vue';
 
 import { SET_OBSTACLE, SET_OBSTACLES, TOGGLE_OBSTACLE_BOX } from '~/store';
 
 export default {
-  components: { ObstacleBox, Settings },
+  components: { Dice, ObstacleBox, Settings },
   data() {
     return {
       isDragging: true
