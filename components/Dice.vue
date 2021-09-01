@@ -41,17 +41,14 @@
 <style lang="scss" >
 
 .dice {
-  @apply cursor-pointer;
-  align-items: center;
-  display: grid;
+  @apply cursor-pointer items-center grid content-center;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   grid-template-rows: auto;
-  justify-items: center;
   padding: 2rem;
   perspective: 600px;
   .die-list {
-    display: grid;
+    @apply grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     height: 6rem;
@@ -59,7 +56,7 @@
     transform-style: preserve-3d;
     width: 6rem;
     .die-item {
-      @apply rounded-2xl;
+      @apply rounded;
       background-color: #fefefe;
       box-shadow: inset -0.35rem 0.35rem 0.75rem rgba(0, 0, 0, 0.3),
       inset 0.5rem -0.25rem 0.5rem rgba(0, 0, 0, 0.15);
