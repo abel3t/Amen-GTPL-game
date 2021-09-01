@@ -20,13 +20,12 @@ export default {
       sceneSpace: null,
       camera: null,
       scene: null,
+      mesh: null,
       renderer: null,
       controls: null,
-      rotation: {
-        x: -Math.PI / 2,
-        y: -Math.PI / 2,
-        z: -Math.PI / 2
-      },
+      targetRotationX: 0,
+      targetRotationY: 0,
+      targetRotationZ: 0,
       isThrowDice: false
     };
   },
@@ -87,6 +86,8 @@ export default {
             gltf.scene.name = 'GLTF Scene';
             gltf.scene.scale.set(1.4, 1.4, 1.4);
             this.scene.add(gltf.scene);
+
+            this.mesh = gltf.scene.children[0];
           },
 
           // Call while loading
@@ -117,18 +118,17 @@ export default {
       this.renderer.render(this.scene, this.camera);
     },
     throwDice() {
-      console.log('throw');
-      this.update();
+      this.isThrowDice = !this.isThrowDice;
+      this.rotate();
     },
     rotate() {
-      // this.rotation.x += Math.round(Math.random() * 4) * Math.round(Math.random() * 3) * -1;
-      // this.rotation.y += Math.round(Math.random() * 4) * Math.round(Math.random() * 3) * -1;
-      // this.rotation.z += Math.round(Math.random() * 4) * Math.round(Math.random() * 3) * -1;
-      console.log(this.rotation);
-      // requestAnimationFrame(this.rotate);
-    },
-    update() {
+      if (this.isThrowDice && this.mesh) {this.mesh.rotation.x += Math.random() * 3 * -1;
+        this.mesh.rotation.y += Math.random() * 3 * -1;
+        this.mesh.rotation.z += Math.random() * 3 * -1;
 
+        this.renderer.render( this.scene, this.camera );
+        setTimeout(() => requestAnimationFrame(this.rotate), 20)
+      }
     }
   },
 
