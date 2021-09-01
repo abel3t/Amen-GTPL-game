@@ -74,8 +74,8 @@
         @apply block content-center content-center rounded-full;
         background-color: #0B0D0C;
         box-shadow: inset -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.5);
-        height: 1.25rem;
-        width: 1.25rem;
+        height: 1.15rem;
+        width: 1.15rem;
       }
     }
   }

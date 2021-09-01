@@ -287,14 +287,16 @@
   #cell-40 {
     @apply col-start-14 col-span-3 row-span-2 pb-0 flex items-end;
     > div {
-      @apply w-5/6 h-5/6 p-0;
+      @apply p-0;
+      width: 74%;
+      height: 75%;
       background: url("assets/images/to-finish.png") no-repeat center;
       background-size: 116%;
 
       > div {
-        @apply pt-10;
+        @apply pt-5;
         font-family: 'Alfa Slab One', serif;
-        font-size: 18px;
+        font-size: 0.8em;
       }
     }
   }
