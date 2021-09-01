@@ -95,8 +95,8 @@ const state = () => ({
   } as any,
   animates: {
     1: 'animate__flipInX',
-    2: 'animate__bounce',
-    3: 'animate__pulse',
+    2: 'animate__bounceIn',
+    3: 'animate__bounceInDown',
     4: 'animate__rubberBand',
     5: 'animate__shakeX',
     6: 'animate__shakeY',
@@ -105,7 +105,10 @@ const state = () => ({
     9: 'animate__wobble',
     10: 'animate__heartBeat',
     11: 'animate__lightSpeedInRight',
-    12: 'animate__jackInTheBox'
+    12: 'animate__jackInTheBox',
+    13: 'animate__fadeIn',
+    14: 'animate__rotateIn',
+    15: 'animate__slideInUp'
   }
 });
 
