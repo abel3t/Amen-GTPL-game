@@ -29,7 +29,6 @@
     "sass": "^1.37.0",
     "sass-loader": "10",
     "ts-jest": "^27.0.3",
-    "vue-jest": "^3.0.4",
-    "webpack": "^5.51.1"
+    "vue-jest": "^3.0.4"
   }
 }

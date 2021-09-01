@@ -19,7 +19,6 @@
            :style="{ background: cellColors['10'] }">10
       </div>
 
-
       <div id="dice">
         <Dice />
       </div>
@@ -94,6 +93,8 @@
   @apply w-full text-center p-5 pt-11 grid grid-cols-16 gap-0;
   height: 100vh;
   background: #FDF3CC;
+  min-height: 600px;
+  min-width: 600px;
 
   .cell {
     @apply p-3 border-0 rounded-b-sm cursor-pointer flex items-center justify-center select-none;
@@ -116,11 +117,11 @@
   }
 
   .pawn {
-    position: absolute;
+    @apply absolute;
     z-index: 9;
     cursor: pointer;
-    min-width: 50px;
-    min-height: 80px;
+    min-width: 25%;
+    min-height: 40%;
     background: transparent;
   }
 

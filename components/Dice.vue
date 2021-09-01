@@ -45,7 +45,6 @@
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   grid-template-rows: auto;
-  padding: 2rem;
   perspective: 600px;
   .die-list {
     @apply grid;
@@ -56,16 +55,16 @@
     transform-style: preserve-3d;
     width: 6rem;
     .die-item {
-      @apply rounded grid;
+      @apply rounded-md grid;
       background-color: #BDBCC8;
       box-shadow: inset -0.35rem 0.35rem 0.75rem rgba(0, 0, 0, 0.3),
       inset 0.5rem -0.25rem 0.5rem rgba(0, 0, 0, 0.15);
       grid-column: 1;
       grid-row: 1;
       grid-template-areas:
-    "one two three"
-    "four five six"
-    "seven eight nine";
+        "one two three"
+        "four five six"
+        "seven eight nine";
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(3, 1fr);
       height: 100%;
@@ -224,7 +223,7 @@ export default {
         dice.forEach(die => {
           this.toggleClasses(die);
           die.dataset.roll = this.getRandomNumber(1, 6);
-        });
+        })
       }
     },
     toggleClasses(die) {
