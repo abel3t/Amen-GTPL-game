@@ -107,7 +107,7 @@
   }
 
   #dice {
-    @apply col-start-3 col-span-3 row-span-2;
+    @apply col-start-3 col-span-3 row-span-2 flex;
     background: #FDF3CC;
   }
 
