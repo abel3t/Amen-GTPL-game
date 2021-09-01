@@ -122,12 +122,13 @@ export default {
       this.rotate();
     },
     rotate() {
-      if (this.isThrowDice && this.mesh) {this.mesh.rotation.x += Math.random() * 3 * -1;
-        this.mesh.rotation.y += Math.random() * 3 * -1;
-        this.mesh.rotation.z += Math.random() * 3 * -1;
+      if (this.isThrowDice && this.mesh) {
+        this.mesh.rotation.x += 0.2;
+        this.mesh.rotation.y += 0.2;
+        this.mesh.rotation.z += 0.2;
 
         this.renderer.render( this.scene, this.camera );
-        setTimeout(() => requestAnimationFrame(this.rotate), 20)
+        requestAnimationFrame(this.rotate);
       }
     }
   },
