@@ -120,8 +120,8 @@
     @apply absolute;
     z-index: 9;
     cursor: pointer;
-    min-width: 25%;
-    min-height: 40%;
+    min-width: 20%;
+    min-height: 36.5%;
     background: transparent;
   }
 
