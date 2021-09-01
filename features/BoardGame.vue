@@ -113,39 +113,35 @@
   }
 
   #pawns {
-    @apply col-start-11 col-span-3 row-span-3 relative;
+    @apply col-start-11 col-span-3 row-span-3;
   }
 
   .pawn {
-    @apply absolute;
+    @apply relative mx-1;
     z-index: 9;
     cursor: pointer;
-    min-width: 20%;
+    min-width: 23%;
     min-height: 36.5%;
     background: transparent;
   }
 
   #pawn-1 {
-    left: 30px;
     background: url("assets/images/pwan-green.png") no-repeat center;
     background-size: 100px 100px;
     overflow: visible;
   }
 
   #pawn-2 {
-    left: 90px;
     background: url("assets/images/pwan-red.png") no-repeat center;
     background-size: 100px 100px;
   }
 
   #pawn-3 {
-    left: 150px;
     background: url("assets/images/pwan-purple.png") no-repeat center;
     background-size: 100px 100px;
   }
 
   #pawn-4 {
-    left: 210px;
     background: url("assets/images/pawn-yello.png") no-repeat center;
     background-size: 100px 100px;
   }
