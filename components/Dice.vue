@@ -56,11 +56,10 @@
     transform-style: preserve-3d;
     width: 6rem;
     .die-item {
-      @apply rounded;
-      background-color: #fefefe;
+      @apply rounded grid;
+      background-color: #BDBCC8;
       box-shadow: inset -0.35rem 0.35rem 0.75rem rgba(0, 0, 0, 0.3),
       inset 0.5rem -0.25rem 0.5rem rgba(0, 0, 0, 0.15);
-      display: grid;
       grid-column: 1;
       grid-row: 1;
       grid-template-areas:
@@ -73,13 +72,10 @@
       padding: 1rem;
       width: 100%;
       .dot {
-        align-self: center;
-        background-color: #676767;
-        border-radius: 50%;
+        @apply block content-center content-center rounded-full;
+        background-color: #0B0D0C;
         box-shadow: inset -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.5);
-        display: block;
         height: 1.25rem;
-        justify-self: center;
         width: 1.25rem;
       }
     }
