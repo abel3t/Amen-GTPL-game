@@ -15,6 +15,7 @@
     "read-excel-file": "^5.2.9",
     "three": "^0.132.2",
     "v-dragged": "^0.0.5",
+    "v-tooltip": "^2.1.3",
     "vue-tailwind": "^2.4.2"
   },
   "devDependencies": {

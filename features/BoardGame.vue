@@ -103,7 +103,7 @@
   }
 
   .settings {
-    @apply col-start-16;
+    @apply col-start-16 w-full h-full;
   }
 
   #dice {
