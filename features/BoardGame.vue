@@ -121,7 +121,7 @@
     z-index: 9;
     cursor: pointer;
     min-width: 23%;
-    min-height: 36.5%;
+    min-height: 37%;
     background: transparent;
   }
 
