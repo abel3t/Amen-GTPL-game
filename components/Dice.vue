@@ -55,10 +55,8 @@
     transform-style: preserve-3d;
     width: 6rem;
     .die-item {
-      @apply rounded-md grid;
+      @apply rounded-2xl grid;
       background-color: #BDBCC8;
-      box-shadow: inset -0.35rem 0.35rem 0.75rem rgba(0, 0, 0, 0.3),
-      inset 0.5rem -0.25rem 0.5rem rgba(0, 0, 0, 0.15);
       grid-column: 1;
       grid-row: 1;
       grid-template-areas:
@@ -216,9 +214,16 @@ export default {
     }
   },
   methods: {
+    playSound (sound) {
+      if(sound) {
+        const audio = new Audio(sound);
+        audio.play();
+      }
+    },
     rollDice() {
       this.isRollDice = !this.isRollDice;
       if (this.isRollDice) {
+        this.playSound('roll-dice.mp3');
         const dice = [...document.querySelectorAll(".die-list")];
         dice.forEach(die => {
           this.toggleClasses(die);
