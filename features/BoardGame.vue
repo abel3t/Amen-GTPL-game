@@ -120,8 +120,8 @@
     @apply relative mx-1;
     z-index: 9;
     cursor: pointer;
-    min-width: 23%;
-    min-height: 37%;
+    min-width: 48px;
+    min-height: 75px;
     background: transparent;
   }
 
