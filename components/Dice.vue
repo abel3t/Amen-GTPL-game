@@ -265,7 +265,7 @@ export default {
     rollDice() {
       this.isRollDice = !this.isRollDice;
       if (this.isRollDice) {
-        this.playSound('roll-dice.mp3');
+        this.playSound('music/roll-dice.mp3');
         const dice = [ ...document.querySelectorAll('.die-list') ];
         dice.forEach(die => {
           this.toggleClasses(die);
