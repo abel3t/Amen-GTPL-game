@@ -336,12 +336,19 @@ export default {
     showObstacleBox(id) {
       this.$store.dispatch(SET_OBSTACLE, id);
       this.$store.dispatch(TOGGLE_OBSTACLE_BOX, true);
+      if (this.$store.getters?.settings.sound) {
+        this.playMusic('music/answer_10sec.mp3')
+      }
     },
     onDragged({ el, deltaX, deltaY }) {
       let l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
       let t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
       el.style.left = l + deltaX + 'px';
       el.style.top = t + deltaY + 'px';
+    },
+    playMusic(sound) {
+      const audio = new Audio(sound);
+      audio.play();
     }
   }
 };

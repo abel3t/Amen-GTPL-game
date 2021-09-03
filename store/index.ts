@@ -5,6 +5,7 @@ export type RootState = ReturnType<typeof state>
 export const TOGGLE_OBSTACLE_BOX = 'toggleObstacleBox';
 export const SET_OBSTACLE = 'setObstacle';
 export const SET_OBSTACLES = 'setObstacles';
+export const TOGGLE_SOUND = 'toggleSound';
 
 const state = () => ({
   showObstacleBox: false,
@@ -109,6 +110,9 @@ const state = () => ({
     13: 'animate__fadeIn',
     14: 'animate__rotateIn',
     15: 'animate__slideInUp'
+  },
+  settings: {
+    sound: true
   }
 });
 
@@ -121,7 +125,10 @@ const mutations: MutationTree<RootState> = {
   },
   [`${SET_OBSTACLES}`](state, obstacles: any) {
     state.obstacles = obstacles;
-  }
+  },
+  [`${TOGGLE_SOUND}`](state, isPlaySound: boolean) {
+    state.settings.sound = isPlaySound;
+  },
 };
 
 const actions: ActionTree<RootState, RootState> = {
@@ -133,6 +140,9 @@ const actions: ActionTree<RootState, RootState> = {
   },
   [`${SET_OBSTACLES}`]({ commit }, payload) {
     commit(SET_OBSTACLES, payload);
+  },
+  [`${TOGGLE_SOUND}`]({ commit }, payload) {
+    commit(TOGGLE_SOUND, payload);
   }
 };
 
@@ -151,6 +161,9 @@ const getters: GetterTree<RootState, RootState> = {
   },
   animates(state) {
     return state.animates;
+  },
+  settings(state) {
+    return state.settings;
   }
 };
 
