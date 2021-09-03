@@ -117,7 +117,7 @@
   }
 
   .pawn {
-    @apply relative mx-1;
+    @apply relative ml-2;
     z-index: 9;
     cursor: pointer;
     min-width: 48px;
@@ -284,10 +284,10 @@
     @apply col-start-14 col-span-3 row-span-2 pb-0 flex items-end;
     > div {
       @apply p-0;
-      width: 74%;
-      height: 75%;
+      width: 75%;
+      height: 90%;
       background: url("assets/images/to-finish.png") no-repeat center;
-      background-size: 116%;
+      background-size: 100%;
 
       > div {
         @apply pt-5;
