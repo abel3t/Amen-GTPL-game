@@ -29,9 +29,6 @@ export default {
     },
     {
       src: '~/plugins/vue-dragged.js'
-    },
-    {
-      src: '~/plugins/vue-tooltip.ts'
     }
   ],
 

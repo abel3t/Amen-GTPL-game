@@ -34,6 +34,7 @@ export default {
   methods: {
     turnOffSound() {
       this.$store.dispatch(TOGGLE_SOUND, false);
+      this.$store.getters?.obstacleSound?.load();
     },
     turnOnSound() {
       this.$store.dispatch(TOGGLE_SOUND, true);

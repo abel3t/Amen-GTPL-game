@@ -1,6 +1,7 @@
 <template>
   <div>
     <ObstacleBox v-if="isShowObstacleBox"/>
+    <ContingencyBox v-if="isShowContingencyBox"/>
     <div class="board">
       <div class="cell" id="cell-start">Start</div>
       <div class="cell" id="cell-1" @click="showObstacleBox(1)" :style="{ background: cellColors['1'] }">1</div>
@@ -21,6 +22,11 @@
 
       <div id="dice">
         <Dice />
+      </div>
+
+      <div id="contingency" @click="showContingencyBox">
+        <div>SỰ CỐ</div>
+        <div>BẤT NGỜ</div>
       </div>
 
       <div class="cell" id="cell-11" @click="showObstacleBox(11)"
@@ -108,8 +114,16 @@
   }
 
   #dice {
-    @apply col-start-3 col-span-3 row-span-2 flex;
+    @apply col-start-3 col-span-2 row-span-2 flex;
     background: #FDF3CC;
+  }
+
+  #contingency {
+    @apply col-start-7 col-span-2 row-span-2 flex flex-col items-center justify-center cursor-pointer rounded-xl;
+    font-family: 'arial', serif;
+    font-size: 20px;
+    color: #fff;
+    background: #E06667;
   }
 
   #pawns {
@@ -305,11 +319,19 @@
 import ObstacleBox from '../components/ObstacleBox.vue';
 import Settings from '../components/Settings.vue';
 import Dice from '~/components/Dice.vue';
+import ContingencyBox from '~/components/ContingencyBox.vue';
 
-import { SET_OBSTACLE, SET_OBSTACLES, TOGGLE_OBSTACLE_BOX } from '~/store';
+import {
+  SET_OBSTACLE,
+  SET_OBSTACLES,
+  SET_CONTINGENCIES,
+  TOGGLE_OBSTACLE_BOX,
+  TOGGLE_CONTINGENCY_BOX,
+  UPDATE_OBSTACLE_SOUND
+} from '~/store';
 
 export default {
-  components: { Dice, ObstacleBox, Settings },
+  components: { Dice, ObstacleBox, ContingencyBox, Settings },
   data() {
     return {
       isDragging: true
@@ -317,9 +339,20 @@ export default {
   },
   mounted() {
     const obstacles = window.localStorage.getItem('obstacles');
+    const contingencies = window.localStorage.getItem('contingencies');
     if (obstacles) {
       this.$store.dispatch(SET_OBSTACLES, JSON.parse(obstacles));
     }
+
+    if (contingencies) {
+      this.$store.dispatch(SET_CONTINGENCIES, JSON.parse(contingencies));
+    }
+    const audio = new Audio('music/answer_10sec.mp3');
+    audio.volume = 0.1;
+    this.$store.dispatch(
+      UPDATE_OBSTACLE_SOUND,
+      audio
+    );
   },
   computed: {
     cellColors: function () {
@@ -330,6 +363,12 @@ export default {
         return this.$store.getters.showObstacleBox;
       },
       set() {}
+    },
+    isShowContingencyBox: {
+      get() {
+        return this.$store.getters.showContingencyBox;
+      },
+      set() {}
     }
   },
   methods: {
@@ -337,7 +376,13 @@ export default {
       this.$store.dispatch(SET_OBSTACLE, id);
       this.$store.dispatch(TOGGLE_OBSTACLE_BOX, true);
       if (this.$store.getters?.settings.sound) {
-        this.playMusic('music/answer_10sec.mp3')
+        this.$store.getters?.obstacleSound?.play();
+      }
+    },
+    showContingencyBox() {
+      this.$store.dispatch(TOGGLE_CONTINGENCY_BOX, true);
+      if (this.$store.getters?.settings.sound) {
+        this.$store.getters?.obstacleSound?.play();
       }
     },
     onDragged({ el, deltaX, deltaY }) {
@@ -345,10 +390,6 @@ export default {
       let t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
       el.style.left = l + deltaX + 'px';
       el.style.top = t + deltaY + 'px';
-    },
-    playMusic(sound) {
-      const audio = new Audio(sound);
-      audio.play();
     }
   }
 };
