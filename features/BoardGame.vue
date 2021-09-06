@@ -405,7 +405,7 @@ export default {
       }
 
       for (let i = 0; i <=16; i++) {
-        let element = this.makeDiv();
+        let element = this.makeDiv(i);
         document.getElementById('party').append(element);
         setTimeout(() => party.confetti(element, {
           count: party.variation.range(50, 100),
@@ -418,9 +418,9 @@ export default {
         document.getElementById('congratulation').append(element);
       }, 1000);
     },
-    makeDiv() {
+    makeDiv(x) {
       let element = document.createElement('div');
-      const posX = (Math.random() * 1920).toFixed();
+      const posX = (Math.random() * 1920 + x * 20).toFixed();
       const posY = (Math.random() * 200).toFixed();
 
       element.style.width = 0 + 'px';
