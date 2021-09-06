@@ -114,7 +114,7 @@
   }
 
   .settings {
-    @apply col-start-16 w-full h-full;
+    @apply col-start-16 row-span-2 w-full h-full;
   }
 
   #dice {
