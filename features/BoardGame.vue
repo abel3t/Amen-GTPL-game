@@ -403,12 +403,12 @@ export default {
         document.getElementById('party').append(element);
         setTimeout(() => {
           party.confetti(element, {
-            count: party.variation.range(20, 70),
+            count: party.variation.range(55, 60),
           });
           party.sparkles(element, {
-            count: party.variation.range(50, 80),
+            count: party.variation.range(55, 60),
           });
-        }, i ** 2 * 20);
+        }, i ** 2 * 21);
       }
       setTimeout(() => {
         document.getElementById('congratulation').removeChild(document.getElementById('party'));
