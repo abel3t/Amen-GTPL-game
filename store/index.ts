@@ -9,6 +9,7 @@ export const SET_OBSTACLES = 'setObstacles';
 export const SET_CONTINGENCIES = 'setContingencies';
 export const TOGGLE_SOUND = 'toggleSound';
 export const UPDATE_OBSTACLE_SOUND = 'updateObstacleSound';
+export const UPDATE_CONGRATULATION_SOUND = 'updateCongratulationSound';
 
 const state = () => ({
   showObstacleBox: false,
@@ -119,7 +120,8 @@ const state = () => ({
   settings: {
     sound: true
   },
-  obstacleSound: null
+  obstacleSound: null,
+  congratulationSound: null
 });
 
 const mutations: MutationTree<RootState> = {
@@ -144,6 +146,9 @@ const mutations: MutationTree<RootState> = {
   },
   [`${UPDATE_OBSTACLE_SOUND}`](state, obstacleSound: any) {
     state.obstacleSound = obstacleSound;
+  },
+  [`${UPDATE_CONGRATULATION_SOUND}`](state, congratulationSound: any) {
+    state.congratulationSound = congratulationSound;
   }
 };
 
@@ -168,6 +173,9 @@ const actions: ActionTree<RootState, RootState> = {
   },
   [`${UPDATE_OBSTACLE_SOUND}`]({ commit }, payload) {
     commit(UPDATE_OBSTACLE_SOUND, payload);
+  },
+  [`${UPDATE_CONGRATULATION_SOUND}`]({ commit }, payload) {
+    commit(UPDATE_CONGRATULATION_SOUND, payload);
   }
 };
 
@@ -198,6 +206,9 @@ const getters: GetterTree<RootState, RootState> = {
   },
   obstacleSound(state) {
     return state.obstacleSound;
+  },
+  congratulationSound(state) {
+    return state.congratulationSound;
   }
 };
 

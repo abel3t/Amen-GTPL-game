@@ -2,6 +2,10 @@
   <div>
     <ObstacleBox v-if="isShowObstacleBox"/>
     <ContingencyBox v-if="isShowContingencyBox"/>
+    <div id="congratulation">
+      <div id="party">
+      </div>
+    </div>
     <div class="board">
       <div class="cell" id="cell-start">Start</div>
       <div class="cell" id="cell-1" @click="showObstacleBox(1)" :style="{ background: cellColors['1'] }">1</div>
@@ -14,14 +18,14 @@
       <div class="cell" id="cell-8" @click="showObstacleBox(8)" :style="{ background: cellColors['8'] }">8</div>
       <div class="cell" id="cell-9" @click="showObstacleBox(9)" :style="{ background: cellColors['9'] }">9</div>
       <div class="settings">
-        <Settings />
+        <Settings/>
       </div>
       <div class="cell" id="cell-10" @click="showObstacleBox(10)"
            :style="{ background: cellColors['10'] }">10
       </div>
 
       <div id="dice">
-        <Dice />
+        <Dice/>
       </div>
 
       <div id="contingency" @click="showContingencyBox">
@@ -62,7 +66,7 @@
       <div class="cell" id="cell-14" @click="showObstacleBox(14)" :style="{ background: cellColors['14'] }">14</div>
 
 
-      <div class="cell" id="cell-40" @click="showObstacleBox(40)">
+      <div class="cell" id="cell-40" @click="showCongratulation">
         <div>
           <div>
             Về<br/>đích<br/>40
@@ -316,6 +320,7 @@
 </style>
 
 <script>
+import party from 'party-js';
 import ObstacleBox from '../components/ObstacleBox.vue';
 import Settings from '../components/Settings.vue';
 import Dice from '~/components/Dice.vue';
@@ -327,7 +332,8 @@ import {
   SET_CONTINGENCIES,
   TOGGLE_OBSTACLE_BOX,
   TOGGLE_CONTINGENCY_BOX,
-  UPDATE_OBSTACLE_SOUND
+  UPDATE_OBSTACLE_SOUND,
+  UPDATE_CONGRATULATION_SOUND
 } from '~/store';
 
 export default {
@@ -347,12 +353,14 @@ export default {
     if (contingencies) {
       this.$store.dispatch(SET_CONTINGENCIES, JSON.parse(contingencies));
     }
+
     const audio = new Audio('music/answer_10sec.mp3');
     audio.volume = 0.1;
-    this.$store.dispatch(
-      UPDATE_OBSTACLE_SOUND,
-      audio
-    );
+
+    const congratulationSound = new Audio('music/loud-applause.mp3');
+
+    this.$store.dispatch(UPDATE_OBSTACLE_SOUND, audio);
+    this.$store.dispatch(UPDATE_CONGRATULATION_SOUND, congratulationSound);
   },
   computed: {
     cellColors: function () {
@@ -390,6 +398,38 @@ export default {
       let t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
       el.style.left = l + deltaX + 'px';
       el.style.top = t + deltaY + 'px';
+    },
+    showCongratulation() {
+      if (this.$store.getters?.settings.sound) {
+        this.$store.getters?.congratulationSound.play();
+      }
+
+      for (let i = 0; i <=16; i++) {
+        let element = this.makeDiv();
+        document.getElementById('party').append(element);
+        setTimeout(() => party.confetti(element, {
+          count: party.variation.range(50, 100),
+        }), i * i * 20);
+      }
+      setTimeout(() => {
+        document.getElementById('congratulation').removeChild(document.getElementById('party'));
+        let element = document.createElement('div');
+        element.id = 'party';
+        document.getElementById('congratulation').append(element);
+      }, 1000);
+    },
+    makeDiv() {
+      let element = document.createElement('div');
+      const posX = (Math.random() * 1920).toFixed();
+      const posY = (Math.random() * 200).toFixed();
+
+      element.style.width = 0 + 'px';
+      element.style.height = 0 + 'px';
+      element.style.position = 'absolute';
+      element.style.left = posX + 'px';
+      element.style.top = posY + 'px';
+      element.style.zIndex = '-1';
+      return element;
     }
   }
 };
