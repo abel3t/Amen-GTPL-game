@@ -68,9 +68,7 @@
 
       <div class="cell" id="cell-40" @click="showCongratulation">
         <div>
-          <div>
-            Về<br/>đích<br/>40
-          </div>
+          Về đích
         </div>
       </div>
 
@@ -301,17 +299,13 @@
   #cell-40 {
     @apply col-start-14 col-span-3 row-span-2 pb-0 flex items-end;
     > div {
-      @apply p-0;
+      @apply flex items-center justify-center;
       width: 75%;
       height: 90%;
       background: url("assets/images/to-finish.png") no-repeat center;
       background-size: 100%;
-
-      > div {
-        @apply pt-5;
-        font-family: 'Alfa Slab One', serif;
-        font-size: 0.8em;
-      }
+      font-family: 'Alfa Slab One', serif;
+      font-size: 0.8em;
     }
   }
 
