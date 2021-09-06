@@ -21,7 +21,7 @@ t-modal {
 }
 
 .content {
-  @apply border-2 rounded-md;
+  @apply border-2 rounded-md select-none;
   &__header {
     @apply text-white text-3xl p-4;
     font-family: 'Alfa Slab One', serif;
