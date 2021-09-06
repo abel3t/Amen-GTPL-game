@@ -1,5 +1,5 @@
 <template>
-    <t-modal v-model="showContingencyBox" :escToClose="true" :hideCloseButton="false" @before-close="close">
+    <t-modal class="animate__animated" v-bind:class="{[animateBox]: animateBox}" v-model="showContingencyBox" :escToClose="true" :hideCloseButton="false" @before-close="close">
       <div class="content" :style="{borderColor: cellColors[5]}">
         <div class="content__header animate__animated" :style="{backgroundColor: cellColors[5]}" v-bind:class="{[animateHeader]: animateHeader}">{{contingency.header}}</div>
         <div class="content__body">
@@ -62,6 +62,9 @@ export default {
       const rand = Math.floor(Math.random() * contingencies.length);
       console.log({ rand })
       return contingencies[rand] || {};
+    },
+    animateBox() {
+      return this.animate();
     },
     animateHeader() {
       return this.animate();
