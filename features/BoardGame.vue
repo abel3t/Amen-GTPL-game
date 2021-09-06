@@ -98,7 +98,7 @@
 
 <style lang="scss" scoped>
 .board {
-  @apply w-full text-center p-5 pt-11 grid grid-cols-16 gap-0;
+  @apply w-full text-center p-5 pt-11 grid grid-cols-16 gap-0 select-none;
   height: 100vh;
   background: #FDF3CC;
   min-height: 600px;
@@ -401,20 +401,25 @@ export default {
       for (let i = 0; i <=16; i++) {
         let element = this.makeDiv(i);
         document.getElementById('party').append(element);
-        setTimeout(() => party.confetti(element, {
-          count: party.variation.range(50, 100),
-        }), i * i * 20);
+        setTimeout(() => {
+          party.confetti(element, {
+            count: party.variation.range(20, 70),
+          });
+          party.sparkles(element, {
+            count: party.variation.range(50, 80),
+          });
+        }, i ** 2 * 20);
       }
       setTimeout(() => {
         document.getElementById('congratulation').removeChild(document.getElementById('party'));
         let element = document.createElement('div');
         element.id = 'party';
         document.getElementById('congratulation').append(element);
-      }, 1000);
+      }, 5500);
     },
     makeDiv(x) {
       let element = document.createElement('div');
-      const posX = (Math.random() * 1920 + x * 20).toFixed();
+      const posX = (Math.random() * 1920 + x ** 2).toFixed();
       const posY = (Math.random() * 200).toFixed();
 
       element.style.width = 0 + 'px';
