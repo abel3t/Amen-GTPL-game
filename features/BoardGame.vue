@@ -393,23 +393,33 @@ export default {
       el.style.left = l + deltaX + 'px';
       el.style.top = t + deltaY + 'px';
     },
+    delay(milliseconds) {
+      return new Promise(resolve => {
+        setTimeout(() => resolve(true), milliseconds)
+      });
+    },
+    async showCongratulationEffect() {
+      for (let i = 0; i <=16; i++) {
+        let element = this.makeDiv(i);
+        document.getElementById('party').append(element);
+
+        await this.delay(i < 2 ? i * 100 : i * 35);
+
+        party.confetti(element, {
+          count: party.variation.range(55, 60),
+        });
+        party.sparkles(element, {
+          count: party.variation.range(55, 60),
+        });
+      }
+    },
     showCongratulation() {
       if (this.$store.getters?.settings.sound) {
         this.$store.getters?.congratulationSound.play();
       }
 
-      for (let i = 0; i <=16; i++) {
-        let element = this.makeDiv(i);
-        document.getElementById('party').append(element);
-        setTimeout(() => {
-          party.confetti(element, {
-            count: party.variation.range(55, 60),
-          });
-          party.sparkles(element, {
-            count: party.variation.range(55, 60),
-          });
-        }, i < 4 ? i ** 3 * 20 : i ** 2 * 21);
-      }
+      this.showCongratulationEffect();
+
       setTimeout(() => {
         document.getElementById('congratulation').removeChild(document.getElementById('party'));
         let element = document.createElement('div');
