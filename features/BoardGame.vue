@@ -400,16 +400,16 @@ export default {
     },
     async showCongratulationEffect() {
       for (let i = 0; i <=16; i++) {
-        let element = this.makeDiv(i);
+        let element = this.makeDiv(i, i > 15);
         document.getElementById('party').append(element);
 
-        await this.delay(i < 2 ? i * 100 : i * 35);
+        await this.delay(i < 2 ? i * 100 : i * 32);
 
         party.confetti(element, {
-          count: party.variation.range(55, 60),
+          count: party.variation.range(60, 60 * (Math.floor(Math.random() * 3) + 1)),
         });
         party.sparkles(element, {
-          count: party.variation.range(55, 60),
+          count: party.variation.range(60, 60 * (Math.floor(Math.random() * 3) + 1)),
         });
       }
     },
@@ -427,10 +427,10 @@ export default {
         document.getElementById('congratulation').append(element);
       }, 5500);
     },
-    makeDiv(x) {
+    makeDiv(x, isLast) {
       let element = document.createElement('div');
-      const posX = (Math.random() * 1920 + x ** 2).toFixed();
-      const posY = (Math.random() * 200).toFixed();
+      const posX = isLast ? 700 : (Math.random() * 1400 + x ** 2).toFixed();
+      const posY = isLast ? 100 : (Math.random() * 200).toFixed();
 
       element.style.width = 0 + 'px';
       element.style.height = 0 + 'px';
