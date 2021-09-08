@@ -414,19 +414,19 @@ export default {
         });
       }
     },
-    showCongratulation() {
+    async showCongratulation() {
       if (this.$store.getters?.settings.sound) {
         this.$store.getters?.congratulationSound.play();
       }
 
-      this.showCongratulationEffect();
+      await this.showCongratulationEffect();
 
-      setTimeout(() => {
-        document.getElementById('congratulation').removeChild(document.getElementById('party'));
-        let element = document.createElement('div');
-        element.id = 'party';
-        document.getElementById('congratulation').append(element);
-      }, 6000);
+      await this.delay(6000);
+
+      document.getElementById('congratulation').removeChild(document.getElementById('party'));
+      let element = document.createElement('div');
+      element.id = 'party';
+      document.getElementById('congratulation').append(element);
     },
     makeDiv(x, isLast) {
       let element = document.createElement('div');
