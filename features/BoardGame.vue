@@ -403,7 +403,7 @@ export default {
         let element = this.makeDiv(i, i > 15);
         document.getElementById('party').append(element);
 
-        await this.delay(i < 2 ? i * 100 : i * 32);
+        await this.delay(i < 5 ? i * 100 : i * 35);
 
         const max = 35 * (Math.floor(Math.random() * 2) + 1);
         party.confetti(element, {
@@ -426,7 +426,7 @@ export default {
         let element = document.createElement('div');
         element.id = 'party';
         document.getElementById('congratulation').append(element);
-      }, 5500);
+      }, 6000);
     },
     makeDiv(x, isLast) {
       let element = document.createElement('div');
