@@ -60,7 +60,6 @@ export default {
       let contingencies = this.$store.getters.contingencies;
       contingencies = Object.values(contingencies || {});
       const rand = Math.floor(Math.random() * contingencies.length);
-      console.log({ rand })
       return contingencies[rand] || {};
     },
     animateBox() {
@@ -81,8 +80,8 @@ export default {
       this.$store.dispatch(TOGGLE_CONTINGENCY_BOX, false);
     },
     animate: function() {
-      const animates = this.$store.getters.animates;
-      const rand = Math.floor(Math.random() * Object.keys(animates).length);
+      const animates = Object.values(this.$store.getters.animates);
+      const rand = Math.floor(Math.random() * animates.length);
       return animates[rand];
     }
   }
