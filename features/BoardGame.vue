@@ -300,8 +300,17 @@
     @apply col-start-14 col-span-3 row-span-2 pb-0 flex items-end;
     > div {
       @apply flex items-center justify-center;
-      width: 75%;
-      height: 90%;
+
+      @media only screen and (min-width: 900px) {
+        width: 85%;
+        height: 90%;
+      }
+
+      @media only screen and (min-width: 1200px) {
+        width: 75%;
+        height: 90%;
+      }
+
       background: url("assets/images/to-finish.png") no-repeat center;
       background-size: 100%;
       font-family: 'Alfa Slab One', serif;
