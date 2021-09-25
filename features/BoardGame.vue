@@ -414,12 +414,12 @@ export default {
 
         await this.delay(i < 5 ? i * 100 : i * 35);
 
-        const max = 35 * (Math.floor(Math.random() * 2) + 1);
+        const max = i * 5 * (Math.floor(Math.random() * 2) + 1);
         party.confetti(element, {
-          count: party.variation.range(50, max > 50 ? max : 60),
+          count: party.variation.range(20, max > 20 ? max : 40),
         });
         party.sparkles(element, {
-          count: party.variation.range(50, max > 50 ? max : 60),
+          count: party.variation.range(20, max > 20 ? max : 40),
         });
       }
     },
